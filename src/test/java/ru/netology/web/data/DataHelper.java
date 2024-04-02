@@ -1,5 +1,10 @@
 package ru.netology.web.data;
 
+
+import lombok.Value;
+
+import java.util.Random;
+
 public class DataHelper {
     private DataHelper() {
     }
@@ -32,4 +37,15 @@ public class DataHelper {
         String code;
     }
 
+    @Value
+    public static class CardInfo {
+        String cardNumber;
+        String testId;
+    }
+
+    @Value
+    public static class AuthInfo {
+        String login;
+        String password;
+    }
 }
