@@ -1,5 +1,11 @@
 package ru.netology.web.test;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static com.codeborne.selenide.Selenide.open;
+import static ru.netology.web.data.DataHelper.getFirstCardInfo;
+
 public class MoneyTransferTest {
     DashboardPage dashboardPage;
     CardInfo firstCardInfo;
