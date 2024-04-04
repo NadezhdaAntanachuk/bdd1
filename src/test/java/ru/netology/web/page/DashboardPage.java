@@ -8,29 +8,30 @@ import static com.codeborne.selenide.Condition.attribute;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Condition.text;
 
 public class DashboardPage {
     private final String balanceStart = "Баланс: ";
     private final String balanceFinish = " р.";
-    private final SelenideElement heading = $("[data-test-id=dashboard]");
-    private final ElementsCollection cards = $$("[data-test-id=dashboard] .list__item div");
+    private final SelenideElement heading = $("[data-test-id='dashboard']");
+    private final ElementsCollection cards = $$("[data-test-id='dashboard'] .list__item div");
 
     public DashboardPage() {
         heading.shouldBe(visible);
     }
 
     public int getCardBalance(DataHelper.CardInfo cardInfo) {
-        var text = cards.find(text(cardInfo.getCardNumber().substring(15))).getText();
-        return extractBalance(text);
+        var text = cards.findBy(text(cardInfo.getCardNumber().substring(01))).getText();
+          return extractBalance(text);
     }
 
-    public int getCardBalance(int index) {
-        var text = cards.get(index).getText();
-        return extractBalance(text);
-    }
+//    public int getCardBalance(int index) {
+//        var text = cards.get(index).getText();
+//        return extractBalance(text);
+//    }
 
     public TransferPage selectCardToTransfer(DataHelper.CardInfo cardInfo) {
-        cards.find(attribute("data-test-id", cardInfo.getTestId())).$("button").click();
+        cards.findBy(attribute("data-test-id", cardInfo.getTestId())).$("button").click();
         return new TransferPage();
     }
     private int extractBalance(String text) {
